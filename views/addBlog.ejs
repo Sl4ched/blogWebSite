@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+
+<%
+const allId = user.map(val => val.id)
+const allMail = user.map(val => val.email)
+let userMail
+
+allId.forEach((val, index) => {
+    if (val === userID) userMail = allMail[index]
+
+})
+//userMail is current user
+//user is contains all data
+//userID is current id
+%>
+
+<nav data-bs-theme="dark" class="navbar bg-dark navbar bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/homepage/<%= userID %>">One Piece Blog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Welcome <%=  userMail  %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/homepage/<%= userID %>">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/homepage/add_blog/<%= userID  %>">Add Blog</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Account
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/register">Create New Account</a></li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li><a style="color: red" class="dropdown-item" href="/login">Sign out</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--
+Form section
+-->
+
+<div style="display: flex;justify-content: center;align-items: center;height: 100vh;margin: 0 30px">
+    <form action="/homepage/add_blog/<%= userID %>" method="POST">
+
+        <div class="row g-3">
+            <h3 class="col-sm-2 col-form-label"><%= userMail.toUpperCase() %></h3>
+            <input required="required" type="text" name="name" class="form-control-lg" placeholder="First name"
+                   aria-label="First name">
+            <input required="required" type="text" name="surname" class="form-control-lg" placeholder="Last name"
+                   aria-label="Last name">
+            <textarea required="required" maxlength="1500" name="body" class="form-control-lg"
+                      placeholder="Add Your text here" aria-label="Add Your text here"></textarea>
+            <button type="submit" class="btn btn-outline-dark btn-lg">Submit</button>
+        </div>
+
+    </form>
+</div>
+
+
+</body>
+</html>

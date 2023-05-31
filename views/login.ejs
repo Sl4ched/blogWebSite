@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<%
+const arrOfEmails = data.map(val => val.email)
+const arrOfPasswords = data.map(val => val.password)
+const arrOfId = data.map(val => val.id)
+%>
+
+<body>
+
+<div style="display: flex;justify-content: center;height: 100vh;align-items: center;">
+
+    <form style="
+    padding: 50px;
+    margin: 50px 50px;">
+
+        <h1>Login</h1>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input required="required" type="email" class="input form-control form-control-lg" id="email" name='email'
+                   aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input required="required" type="password" name="password" class="input form-control form-control-lg"
+                   id="password">
+        </div>
+
+
+        <div class="container text-center">
+            <button type="button" class="btn btn-outline-dark" data-id='<%= arrOfId %>' data-emails='<%= arrOfEmails %>'
+                    data-passwords='<%= arrOfPasswords %>'
+                    id="submitButton">Login
+            </button>
+        </div>
+
+        <div style="display: flex;margin-top: 30px;">
+            <input id="checkbox" class="check" type="checkbox"/>
+            <label style="margin-left: 5px" class="remember" for="checkbox">Remember me</label>
+        </div>
+
+        <div class="errorDetect"></div>
+
+        <div style="display: flex;margin-top: 10px">
+            <div>New to blog?</div>
+            <a style="margin: 0 0 0 10px;color: black" href="/register">Sign up now</a>
+        </div>
+
+    </form>
+
+    <img src="leafpht.jpg" style="height: 100vh;flex-grow: 1;max-width: 700px"/>
+
+</div>
+
+
+<script>
+
+    const submitButton = document.querySelector('#submitButton')
+
+    const emails = submitButton.dataset.emails.split(',')
+    const passwords = submitButton.dataset.passwords.split(',')
+    const id = submitButton.dataset.id.split(',')
+
+    const errDtc = document.querySelector('.errorDetect')
+
+
+    submitButton.addEventListener('click', () => {
+
+        const pI = document.querySelector('#password')
+
+        const emailInput = document.querySelector('#email').value
+        const passwordInput = document.querySelector('#password').value
+
+        let isOk = false
+        let specialId = 0
+
+        emails.forEach((value, index) => {
+            if (value === emailInput) {
+                isOk = passwords[index] === passwordInput
+                if (isOk) specialId = id[index]
+            }
+        })
+
+        if (isOk) {
+            window.location.href = `/homepage/${specialId}`
+        } else {
+            errDtc.innerHTML = 'Email Or Password is invalid'
+            pI.value = ""
+            pI.style.border = '1px solid red'
+        }
+    })
+
+
+</script>
+
+
+</body>
+</html>
