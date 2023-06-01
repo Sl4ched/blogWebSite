@@ -34,7 +34,7 @@ const firstGet = (req, res) => {
                         .then(val => { //this render homepage (3)
                             console.log(3)
 
-                            res.render('homepage', //(1)
+                            res.render('homepage', 
                                 {
                                     title: 'Home Page',
                                     userID: req.params.id,
