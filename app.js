@@ -17,22 +17,26 @@ const routerHomePage = require('./routers/homepageRouters')
 
 //url attribute is belong to my own db, so you need to use your own db url
 
-mongoose.connect(/*url*/)
+let url = 'mongodb+srv://Slached:254857Os@mysite.n8xf8lg.mongodb.net/myDB'
+
+mongoose.connect(url)
     .then(() => app.listen(3000))
     .catch((err) => console.log(err))
 
 app.use('/login', routerMain)
 app.use('/register', routerRegister)
-app.use('/homepage',routerHomePage)
+app.use('/homepage', routerHomePage)
 
+//this is for postman to show all data
 app.get('/getAll', (req, res) => {
     Data.find()
-        .then(val => {res.status(200).json(val)})
+        .then(val => {
+            res.status(200).json(val)
+        })
         .catch(err => console.log(err))
 
 })
 
-//this is for postman to show all data
 app.use((req, res, next) => {
     res.redirect('/register')
     next()

@@ -5,11 +5,30 @@
 
 <body>
 
-<div style="display: flex;justify-content: center;height: 100vh;align-items: center;flex-flow: row">
+<div class="d-flex row-column align-items-center flex-fill ">
 
-    <form method="POST" action="/register/insert" style="
-    padding: 50px;
-    margin: 50px 50px ">
+    <div class="d-flex flex-grow-1 flex-column justify-content-center align-items-center" style="
+    background: #f8f2f0;
+    height: 100vh;
+">
+        <div style="
+    background: #fe8660;
+    height: 250px;
+    width: 250px;
+    border-radius: 100%;">
+
+            <div class="d-block opacity-75" style="
+    background: black;
+    height: 250px;
+    width: 250px;
+    position: relative;
+    top: 120px;
+    border-radius: 100%;"></div>
+
+        </div>
+    </div>
+
+    <form class="d-flex flex-column m-5 p-5" method="POST" action="/register/insert">
 
         <h1>Sign up</h1>
 
@@ -33,7 +52,7 @@
         <a style="color: black;" class="specialA" href="/login">Already have an account click here.</a>
     </form>
 
-    <img src="leafpht.jpg" style="height: 100vh;flex-grow: 1;max-width: 700px"/>
+
 
 </div>
 

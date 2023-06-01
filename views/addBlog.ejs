@@ -14,14 +14,15 @@ allId.forEach((val, index) => {
     if (val === userID) userMail = allMail[index]
 
 })
-//userMail is current user
-//user is contains all data
-//userID is current id
+/*userMail is current user,
+user is contains all data
+userID is current id*/
 %>
 
-<nav data-bs-theme="dark" class="navbar bg-dark navbar bg-body-tertiary fixed-top">
+<nav style="background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%, rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% );"
+     class="navbar fixed-top" >
     <div class="container-fluid">
-        <a class="navbar-brand" href="/homepage/<%= userID %>">One Piece Blog</a>
+        <a class="navbar-brand" href="/homepage/<%= userID %>">Slached's Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -76,7 +77,7 @@ Form section
                    aria-label="First name">
             <input required="required" type="text" name="surname" class="form-control-lg" placeholder="Last name"
                    aria-label="Last name">
-            <textarea required="required" maxlength="1500" name="body" class="form-control-lg"
+            <textarea style="height: 550px" required="required" maxlength="1500" name="body" class="form-control-lg"
                       placeholder="Add Your text here" aria-label="Add Your text here"></textarea>
             <button type="submit" class="btn btn-outline-dark btn-lg">Submit</button>
         </div>

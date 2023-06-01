@@ -15,15 +15,19 @@ allId.forEach((val, index) => {
     if (val === userID) userMail = allMail[index]
 })
 
-//userMail is current user
-//user is contains all data
-//id is current userID
-//you can access name as name surname as surname and body as body and the time of upload as uploadTime
+//userMail is current user.
+//user is contains all data.
+//id is current userID.
+//you can access name as name surname as surname and body as body and the time of upload as uploadTime.
 %>
 
-<nav data-bs-theme="dark" class="navbar bg-dark navbar bg-body-tertiary fixed-top">
+<body>
+
+<nav style="background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%, rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% );"
+     class="navbar fixed-top">
+
     <div class="container-fluid">
-        <a class="navbar-brand" href="/homepage/<%= userID %>">One Piece Blog</a>
+        <a class="navbar-brand" href="/homepage/<%= userID %>">Slached's Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -65,7 +69,7 @@ allId.forEach((val, index) => {
     </div>
 </nav>
 
-<div style="margin-top: 70px"></div>
+<div class="m-5"></div>
 
 <% if (name.length !== 0 || surname.length !== 0 || body.length !== 0 ) { %>
 
@@ -87,8 +91,8 @@ allId.forEach((val, index) => {
             time = year + "/" + month + "/" + day + " " + hr + ":" + mn;
         %>
 
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+        <div class="list-group" >
+            <a href="#" class="list-group-item list-group-item-action text-bg-dark" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><%= lastString %></h5>
                     <small><%= time %></small>
@@ -101,11 +105,11 @@ allId.forEach((val, index) => {
 
 <% } %>
 
-<div class="container text-center fixed-bottom">
+<div class="container text-center fixed-bottom" >
 
-<%for (let i = 0 ; i <= 10; i++){ %>
-        <a class="text-dark" href="/homepage/<%= userID %>/?p=<%= i %>"><%= i %></a>
-<% } %>
+    <% for (let i = 0 ; i <= 10; i++){ %>
+        <a  class="text-dark text-bg-light fs-5 text-decoration-none rounded-2 p-1" href="/homepage/<%= userID %>/?p=<%= i %>"><%= i %></a>
+    <% } %>
 
 </div>
 
