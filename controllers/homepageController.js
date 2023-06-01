@@ -7,7 +7,7 @@ let arrOfBlogsBody = []
 let arrOfTime = []
 const firstGet = (req, res) => {
     const pages = req.query.p || 0
-    let limit = 15
+    let limit = req.query.lim || 15
     let numberOfBlogs
 
     //this is a good example of handling queue of queries you need to understand flawless promise mechanism to solve that
@@ -34,7 +34,7 @@ const firstGet = (req, res) => {
                         .then(val => { //this render homepage (3)
                             console.log(3)
 
-                            res.render('homepage', //(1)
+                            res.render('homepage',
                                 {
                                     title: 'Home Page',
                                     userID: req.params.id,
@@ -43,7 +43,8 @@ const firstGet = (req, res) => {
                                     surname: arrOfBlogsSurname,
                                     body: arrOfBlogsBody,
                                     uploadTime: arrOfTime,
-                                    numberOfBlogs: numberOfBlogs
+                                    numberOfBlogs: numberOfBlogs,
+                                    limit:limit
                                 }
                             )
                         })

@@ -20,7 +20,7 @@ allId.forEach((val, index) => {
 //id is current userID.
 //you can access name as name surname as surname and body as body and the time of upload as uploadTime.
 //and use numberOfBlogs to find out how many blogs there
-
+//and limit as limit .Limit is a query parameter ?lim=2
 %>
 
 <body>
@@ -29,7 +29,7 @@ allId.forEach((val, index) => {
      class="navbar fixed-top">
 
     <div class="container-fluid">
-        <a class="navbar-brand" href="/homepage/<%=userID%>/?p=0">Slached's Blog</a>
+        <a class="navbar-brand" href="/homepage/<%= userID %>/?p=0&lim=15">Slached's Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,8 @@ allId.forEach((val, index) => {
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/homepage/<%=userID%>/?p=0">Home</a>
+                        <a class="nav-link active" aria-current="page"
+                           href="/homepage/<%= userID %>/?p=0&lim=15">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/homepage/add_blog/<%= userID %>">Add Blog</a>
@@ -93,7 +94,7 @@ allId.forEach((val, index) => {
             time = year + "/" + month + "/" + day + " " + hr + ":" + mn;
         %>
 
-        <div class="list-group" >
+        <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action text-bg-dark" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><%= lastString %></h5>
@@ -107,10 +108,11 @@ allId.forEach((val, index) => {
 
 <% } %>
 
-<div class="container text-center fixed-bottom" >
+<div class="container text-center fixed-bottom">
 
-    <% for (let i = 0 ; i <= numberOfBlogs/15; i++){ %>
-        <a  class="text-dark text-bg-light fs-5 text-decoration-none rounded-2 p-1" href="/homepage/<%= userID %>/?p=<%= i %>"><%= i %></a>
+    <% for (let i = 0 ; i <= numberOfBlogs / limit; i++){ %>
+        <a class="text-dark text-bg-light fs-5 text-decoration-none rounded-2 p-1"
+           href="/homepage/<%= userID %>/?p=<%= i %>&lim=<%= limit %>"><%= i %></a>
     <% } %>
 
 </div>
