@@ -32,7 +32,6 @@ const firstGet = (req, res) => {
 
                     collectionLoginModel.find()
                         .then(val => { //this render homepage (3)
-                            console.log(3)
 
                             res.render('homepage',
                                 {
