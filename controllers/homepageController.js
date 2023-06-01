@@ -8,33 +8,53 @@ let arrOfTime = []
 const firstGet = (req, res) => {
     const pages = req.query.p || 0
     let limit = 15
+    let numberOfBlogs
 
-    collectionBlogModel.find()
-        .skip(limit * pages)
-        .limit(limit)
+    //this is a good example of handling queue of queries you need to understand flawless promise mechanism to solve that
+    //time complexity problem
+    //first of inside of then working till end then codes callbacks to promise section
+
+    collectionBlogModel.find()//this counts how many blogs (1)
+        .count()
         .then(val => {
 
-            arrOfBlogsName = val.map(value => value.name)
-            arrOfBlogsSurname = val.map(value => value.surname)
-            arrOfBlogsBody = val.map(value => value.body)
-            arrOfTime = val.map(value => value.createdAt)
+            numberOfBlogs = val
 
+            collectionBlogModel.find() //this creates necessary arrays (2)
+                .skip(limit * pages)
+                .limit(limit)
+                .then(val => {
+
+                    arrOfBlogsName = val.map(value => value.name)
+                    arrOfBlogsSurname = val.map(value => value.surname)
+                    arrOfBlogsBody = val.map(value => value.body)
+                    arrOfTime = val.map(value => value.createdAt)
+
+                    collectionLoginModel.find()
+                        .then(val => { //this render homepage (3)
+                            console.log(3)
+
+                            res.render('homepage', //(1)
+                                {
+                                    title: 'Home Page',
+                                    userID: req.params.id,
+                                    user: val,
+                                    name: arrOfBlogsName,
+                                    surname: arrOfBlogsSurname,
+                                    body: arrOfBlogsBody,
+                                    uploadTime: arrOfTime,
+                                    numberOfBlogs: numberOfBlogs
+                                }
+                            )
+                        })
+                        .catch(err => res.json({err: err}))
+
+                })
+                .catch(err => console.log(err))
         })
-        .catch(err => console.log(err))
 
-    collectionLoginModel.find()
-        .then((val) => res.render('homepage',
-            {
-                title: 'Home Page',
-                userID: req.params.id,
-                user: val,
-                name: arrOfBlogsName,
-                surname: arrOfBlogsSurname,
-                body: arrOfBlogsBody,
-                uploadTime: arrOfTime
-            }
-        ))
-        .catch(err => res.json({err: err}))
+
+
 }
 
 const addBlogScreen = (req, res) => {

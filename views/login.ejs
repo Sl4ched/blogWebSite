@@ -105,7 +105,7 @@ const arrOfId = data.map(val => val.id)
         })
 
         if (isOk) {
-            window.location.href = `/homepage/${specialId}`
+            window.location.href = `/homepage/${specialId}/?p=0`
         } else {
             errDtc.innerHTML = 'Email Or Password is invalid'
             pI.value = ""
