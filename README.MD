@@ -1,20 +1,20 @@
 ***
-<img src="./public/1.png">
+<img src="public/1n.png">
 
 ***
-<img src="./public/2.png">
+<img src="public/2n.png">
 
 ***
-<img src="./public/3.png">
+<img src="public/3n.png">
 
 ***
-<img src="./public/4.png">
+<img src="public/4n.png">
 
 ***
-<img src="./public/5.png">
+<img src="public/5n.png">
 
 ***
-<img src="./public/6.png">
+<img src="public/6n.png">
 
 ***
-<img src="./public/7.png">
+<img src="public/7n.png">
