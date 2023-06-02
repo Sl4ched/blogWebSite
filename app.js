@@ -17,8 +17,6 @@ const routerHomePage = require('./routers/homepageRouters')
 
 //url attribute is belong to my own db, so you need to use your own db url
 
-const url = 'mongodb+srv://Slached:254857Os@mysite.n8xf8lg.mongodb.net/myDB'
-
 mongoose.connect(url)
     .then(() => app.listen(3000))
     .catch((err) => console.log(err))
