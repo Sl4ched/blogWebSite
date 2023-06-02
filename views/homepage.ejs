@@ -16,11 +16,15 @@ allId.forEach((val, index) => {
 })
 
 //userMail is current user.
-//user is contains all data.
-//id is current userID.
+//user is contains all user data (email and passwords).
+//userID is current id.
 //you can access name as name surname as surname and body as body and the time of upload as uploadTime.
 //and use numberOfBlogs to find out how many blogs there
 //and limit as limit .Limit is a query parameter ?lim=2
+//you can access current page with currentPage
+
+//console.log(userMail,user,userID,name,surname,body,uploadTime,numberOfBlogs,limit,currentPage)
+
 %>
 
 <body>
@@ -74,47 +78,66 @@ allId.forEach((val, index) => {
 
 <div class="m-5"></div>
 
-<% if (name.length !== 0 || surname.length !== 0 || body.length !== 0 ) { %>
+<div class="mb-2">
+    <% if (name.length !== 0 || surname.length !== 0 || body.length !== 0 ) { %>
 
-    <% for (let i = 0 ; i < name.length ; i++){ %>
+        <% for (let i = 0 ; i < name.length ; i++){ %>
 
-        <%
-            let lastString = name[i] + " " + surname[i]
-            let dateObj = new Date(uploadTime[i])
+            <%
+                let lastString = name[i] + " " + surname[i]
+                let dateObj = new Date(uploadTime[i])
 
-            var month = dateObj.getUTCMonth() + 1; //months from 1-12
-            var day = dateObj.getUTCDate();
-            var year = dateObj.getUTCFullYear();
+                var month = dateObj.getUTCMonth() + 1; //months from 1-12
+                var day = dateObj.getUTCDate();
+                var year = dateObj.getUTCFullYear();
 
-            var hr = dateObj.getHours();
-            var mn = dateObj.getMinutes();
+                var hr = dateObj.getHours();
+                var mn = dateObj.getMinutes();
 
-            if (mn.toString().length === 1) mn = '0' + mn
+                if (mn.toString().length === 1) mn = '0' + mn
 
-            time = year + "/" + month + "/" + day + " " + hr + ":" + mn;
-        %>
+                time = year + "/" + month + "/" + day + " " + hr + ":" + mn;
+            %>
 
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action text-bg-dark" aria-current="true">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><%= lastString %></h5>
-                    <small><%= time %></small>
-                </div>
-                <p class="mb-1"><%= body[i] %></p>
-            </a>
-        </div>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action text-bg-dark" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><%= lastString %></h5>
+                        <small><%= time %></small>
+                    </div>
+                    <p class="mb-1"><%= body[i] %></p>
+                </a>
+            </div>
+
+        <% } %>
 
     <% } %>
+</div>
 
-<% } %>
 
-<div class="container text-center fixed-bottom">
+<div class="container text-center mb-2">
+
+    <% if (currentPage > 0){ %>
+        <a class="fs-5 text-decoration-none text-dark"
+           href="/homepage/<%= userID %>/?p=<%= parseInt(currentPage) - 1 %>&lim=<%= limit %>"><</a>
+    <% } %>
 
     <% for (let i = 0 ; i <= numberOfBlogs / limit; i++){ %>
-        <a class="text-dark text-bg-light fs-5 text-decoration-none rounded-2 p-1"
-           href="/homepage/<%= userID %>/?p=<%= i %>&lim=<%= limit %>"><%= i %></a>
+
+        <% if(parseInt(currentPage) === i){ %>
+            <a class="text-info fs-5 text-decoration-none  p-1"
+               href="/homepage/<%= userID %>/?p=<%= i %>&lim=<%= limit %>"><%= i + 1 %></a>
+        <% }
+        else{ %>
+            <a class="text-dark fs-5 text-decoration-none  p-1"
+               href="/homepage/<%= userID %>/?p=<%= i %>&lim=<%= limit %>"><%= i + 1 %></a>
+        <% } %>
     <% } %>
 
+    <% if (currentPage < Math.floor(numberOfBlogs / limit)){ %>
+        <a class="fs-5 text-decoration-none text-dark"
+           href="/homepage/<%= userID %>/?p=<%= parseInt(currentPage) + 1 %>&lim=<%= limit %>">></a>
+    <% } %>
 </div>
 
 </body>

@@ -28,6 +28,8 @@
         </div>
     </div>
 
+    <!--Form section-->
+
     <form class="d-flex flex-column m-5 p-5" method="POST" action="/register/insert">
 
         <h1>Sign up</h1>
@@ -40,20 +42,19 @@
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input required="required" type="password" name="password" class="form-control-lg input form-control"
+            <input minlength="8" maxlength="20" required="required" type="password" name="password"
+                   class="form-control-lg input form-control"
                    id="password">
+            <div id="passwordHelpInline" class="form-text">Must be 8-20 characters long.</div>
         </div>
 
         <div class="container text-center">
-            <button style="margin-bottom: 25px" type="submit" class="btn btn-outline-dark">Sign up</button>
+            <button style="margin-bottom: 25px" type="submit" id="btn" class="btn btn-outline-dark">Sign up</button>
             <br/>
         </div>
 
         <a style="color: black;" class="specialA" href="/login">Already have an account click here.</a>
     </form>
-
-
-
 </div>
 
 

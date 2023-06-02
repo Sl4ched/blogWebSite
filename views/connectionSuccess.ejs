@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+
+<div class="d-flex flex-grow-1 flex-column justify-content-between align-items-center" style="
+    background: #f8f2f0;
+    height: 100vh;">
+
+    <div class="mt-5" id="orangeBall">
+
+        <div class="d-block opacity-75" id="blackBall"></div>
+
+    </div>
+
+    <div class="text-center mb-5 fs-3" style="font-family: 'Rubik', sans-serif;">
+        <div>Your account has created successfully</div>
+        <div>Redirecting to login section.</div>
+        <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    const black = document.querySelector('#blackBall')
+    const orange = document.querySelector('#orangeBall')
+
+    let widthO = 200
+    let heightO = 200
+
+    let widthB = 200
+    let heightB = 200
+
+    let deg = 0
+
+    const redirect = setTimeout(()=> {
+        window.location.href = '/login'
+    },8000)
+
+    const growOrange = setInterval(() => {
+        widthO += 1
+        heightO += 1
+
+        orange.style.width = widthO + "px"
+        orange.style.height = heightO + "px"
+
+        if (widthO > 400) {
+            clearInterval(growOrange)
+
+            setInterval(() => { //this will run infinite
+                deg += 3
+
+                console.log(widthB)
+
+                if (widthB === 0) growBlackF()
+                else if (widthB === 200) shrinkBlackF()
+
+                orange.style.transform = `rotate(${deg}deg)`
+
+            }, 20)
+        }
+    }, 10)
+
+
+    const growBlackF = () => {
+        const growBlack = setInterval(() => {
+
+            widthB += 1
+            heightB += 1
+
+            black.style.width = widthB + "px"
+            black.style.height = heightB + "px"
+
+            if (widthB >= 200) clearInterval(growBlack)
+        }, 50)
+    }
+
+    const shrinkBlackF = () => {
+        const shrinkBlack = setInterval(() => {
+            widthB -= 1
+            heightB -= 1
+
+            black.style.width = widthB + "px"
+            black.style.height = heightB + "px"
+
+            if (widthB <= 0) clearInterval(shrinkBlack)
+        }, 50)
+    }
+
+</script>
+
+
+</body>
+</html>

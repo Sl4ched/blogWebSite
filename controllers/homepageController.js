@@ -43,7 +43,8 @@ const firstGet = (req, res) => {
                                     body: arrOfBlogsBody,
                                     uploadTime: arrOfTime,
                                     numberOfBlogs: numberOfBlogs,
-                                    limit:limit
+                                    limit:limit,
+                                    currentPage : pages
                                 }
                             )
                         })
@@ -67,7 +68,7 @@ const postBlog = (req, res) => {
 
     const newData = new collectionBlogModel(req.body)
     newData.save()
-        .then(() => res.redirect(`/homepage/${req.params.id}`))
+        .then(() => res.redirect(`/homepage/${req.params.id}/?p=0&lim=15`))
         .catch(err => console.log(err))
 
 }

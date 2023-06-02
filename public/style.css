@@ -52,10 +52,19 @@ table {
 
 /*Start here*/
 
-.errorDetect {
-    display: flex;
-    color: red;
-    justify-content: center;
-    font-size: 0.7rem;
-    margin-top: 15px;
+#orangeBall {
+    background: #fe8660;
+    height: 250px;
+    width: 250px;
+    border-radius: 100%;
+}
+
+#blackBall {
+    background: black;
+    height: 200px;
+    width: 200px;
+    position: relative;
+    top: 120px;
+    border-radius: 100%;
+
 }

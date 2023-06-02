@@ -41,7 +41,7 @@ const arrOfId = data.map(val => val.id)
             <label style="margin-left: 5px" class="remember" for="checkbox">Remember me</label>
         </div>
 
-        <div class="errorDetect"></div>
+        <div class="text-danger text-center fs-6" id="errorDetect"></div>
 
         <div style="display: flex;margin-top: 10px">
             <div>New to blog?</div>
@@ -84,8 +84,7 @@ const arrOfId = data.map(val => val.id)
     const passwords = submitButton.dataset.passwords.split(',')
     const id = submitButton.dataset.id.split(',')
 
-    const errDtc = document.querySelector('.errorDetect')
-
+    const errDtc = document.querySelector('#errorDetect')
 
     submitButton.addEventListener('click', () => {
 
@@ -109,7 +108,7 @@ const arrOfId = data.map(val => val.id)
         } else {
             errDtc.innerHTML = 'Email Or Password is invalid'
             pI.value = ""
-            pI.style.border = '1px solid red'
+            pI.style.border = '1px solid #dc3545'
         }
     })
 
